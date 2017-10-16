@@ -1,7 +1,7 @@
 dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
 puts "Please type a sentence"
 #	Create an array from the user input, ignoring any spaces or special characters
-user_array = gets.chomp.downcase.split(/[^a-zA-Z0-9']/) - [""]
+user_array = gets.chomp.downcase.split(/[^a-z0-9']/) - [""]
 
 def substrings(array, dictionary)
 	matches_hash = {}

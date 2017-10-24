@@ -50,9 +50,37 @@ module Enumerable
 		count
 	end
 	
-	def my_map
+	def my_map(&block)
+		mapped = []
+		if block == nil
+			self.my_each{|item| mapped.push(yield(item))}
+		else
+			self.my_each{|item| mapped.push(block.call(item))}
+		end
+		mapped
+	end
+	
+	def my_map!(&block)
+		if !block
+			self.my_each_with_index{|item, index| self[index] = yield(item)}
+		else
+			self.my_each_with_index{|item, index| self[index] = block.call(item)}
+		end
+		self
+	end
+	
+	def my_inject(initial=self[0])
+		array = self
+		if initial == array[0]
+			array = self[1..-1]
+		end
+		array.my_each{|item| initial = yield(initial, item)}
+		initial
 	end
 
 end
 
-my_array = [1,2,3,4,5,6,7,8,9,10]
+def multiply_els(array)
+		array.my_inject{|product, n| product*n}
+end
+

@@ -37,18 +37,22 @@ module Enumerable
 		self.my_each {|item| result = false if yield(item)}
 		result
 	end
-=begin	
-	def my_count(var=nil, &block=nil)
+	
+	def my_count(param=nil)
 		count = 0
-		self.my_each{|item| count += 1 if yield(item)}
+		if param == nil && block_given? == false
+			self.my_each{|item| count += 1}
+		elsif param != nil && block_given? == false
+			self.my_select{|item| item == param}.my_each{|item| count += 1}
+		elsif param == nil && block_given?
+			self.my_select{|item| yield(item)}.my_each{|item| count += 1}
+		end
 		count
 	end
-=end
+	
+	def my_map
+	end
+
 end
 
 my_array = [1,2,3,4,5,6,7,8,9,10]
-
-puts my_array.my_none? {|num| num < 0}
-puts my_array.my_none?{|num| num == 2}
-
-puts my_array.my_count{7}

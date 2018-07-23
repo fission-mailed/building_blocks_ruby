@@ -56,7 +56,7 @@ module Enumerable
 			if yield(item)
 				result = false
 				break
-				#Only needs one true value to return true
+				#Only needs one true value to return false
 			end
 		end
 		result

@@ -1,6 +1,6 @@
-def caesar_cipher(phrase, shift)
+def caesar_cipher(phrase, shift = 1)
 
-	alphabet = "abcdefghijklmnopqrstuvwxyz".split("").to_a
+	alphabet = ("a".."z").to_a
 	coded_phrase = ""
 	
 	phrase_array = phrase.split("")
@@ -22,9 +22,11 @@ def caesar_cipher(phrase, shift)
 	
 end
 
+=begin
 puts "Please enter the phrase you wish to code:"
 decoded_phrase = gets.chomp
 puts "Please input the shift factor (0-26)"
 factor = gets.chomp.to_i
 
 puts caesar_cipher(decoded_phrase, factor)
+=end
